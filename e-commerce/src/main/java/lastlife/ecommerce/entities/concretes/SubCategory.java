@@ -1,0 +1,44 @@
+package lastlife.ecommerce.entities.concretes;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","products"})
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name="subcategories")
+public class SubCategory {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="subcategory_id")
+	private int id;
+	
+	@Column(name="subcategory_name")
+	private String subcategoryName;
+	
+	@ManyToOne
+	@JoinColumn(name="categories_category_id")
+	private Category category;
+	
+	@OneToMany(mappedBy = "subCategory")
+	private List<Product> products;
+}
