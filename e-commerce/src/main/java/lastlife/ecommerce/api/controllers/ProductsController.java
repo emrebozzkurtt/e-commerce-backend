@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class ProductsController {
 		this.productService = productService;
 	}
 
+	
 	@GetMapping("/getAllProducts")
 	public DataResult<List<Product>> getAllProducts(){
 		return this.productService.getAllProducts();
@@ -38,8 +40,29 @@ public class ProductsController {
 		return this.productService.addProduct(product);
 	}
 	
+	@DeleteMapping("/removeProduct")
+	public Result removeProduct(@RequestParam int productId) {
+		return this.productService.removeProduct(productId);
+	}
+	
 	@GetMapping("/getByProductNameContains")
 	public DataResult<List<Product>> getByProductNameContains(@RequestParam String productName) {
 		return this.productService.getByProductNameContains(productName);
 	}
+	
+	@GetMapping("/getAllProductSortedASC")
+	public DataResult<List<Product>> getAllProductSortedASC(){
+		return this.productService.getAllProductSortedASC();
+	}
+	
+	@GetMapping("/getAllProductSortedDESC")
+	public DataResult<List<Product>> getAllProductSortedDESC(){
+		return this.productService.getAllProductSortedDESC();
+	}
+	
+	@GetMapping("/getBySubCategory_SubcategoryName")
+	public DataResult<List<Product>> getBySubCategory_SubcategoryName(@RequestParam String subcategoryName){
+		return this.productService.getBySubCategory_SubcategoryName(subcategoryName);
+	}
+
 }

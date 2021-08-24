@@ -47,4 +47,8 @@ public class Product {
 	@Column(name="product_brand")
 	private String productBrand;
 	
+	@ManyToOne
+	@JoinColumn(name = "supplier_supplier_id")
+	private Supplier supplier;
+	
 }

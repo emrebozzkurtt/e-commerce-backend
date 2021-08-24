@@ -25,6 +25,13 @@ public class UserManager implements UserService {
 		this.userDao.save(user);
 		return new SuccessResult("Kullanıcı Eklenildi.");
 	}
+	
+	@Override
+	public Result remove(String email) {
+		this.userDao.deleteById(this.userDao.findByEmail(email).getId());
+		return new SuccessResult("Kullanıcı Silindi.");
+	}
+
 
 	@Override
 	public DataResult<User> findByEmail(String email) {

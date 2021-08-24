@@ -8,5 +8,7 @@ public interface UserService {
 
 	Result add(User user);
 	
+	Result remove(String email);
+	
 	DataResult<User> findByEmail(String email);
 }
